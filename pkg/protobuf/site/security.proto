@@ -1,0 +1,19 @@
+syntax = "proto3";
+package proto;
+option go_package = "serverApi/pkg/protobuf/site";
+
+// 认证信息响应
+message SecurityAuthInfoResp {
+    string areaCode = 1; // 地区编码
+    string mobile = 2; // 手机号
+    string email = 3; // 邮箱
+}
+
+// 绑定请求信息
+message SecurityBindingReq {
+    int32 accountType = 1; // 账号类型 1-手机 2-邮箱
+    string areaCode = 2; // 地区编码
+    string mobile = 3; // 手机号
+    string email = 4; // 邮箱
+    string code = 5; // 验证码
+}

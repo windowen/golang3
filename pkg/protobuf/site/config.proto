@@ -1,0 +1,10 @@
+syntax = "proto3";
+package proto;
+option go_package = "serverApi/pkg/protobuf/site";
+
+// 系统站点配置响应
+message SiteConfigsResp {
+    string resourceUri = 1; // 资源地址
+    int32 diamondExchangeUsdRatio = 2; // 钻石兑换比列
+    int32 isChangeBind = 3; // 是否开启换绑
+}

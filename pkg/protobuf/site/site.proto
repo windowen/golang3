@@ -1,0 +1,47 @@
+syntax = "proto3";
+package proto;
+option go_package = "serverApi/pkg/protobuf/site";
+import "site/user.proto";
+import "site/global_area.proto";
+import "site/follow.proto";
+import "site/msg.proto";
+import "site/security.proto";
+import "site/config.proto";
+import "site/banner.proto";
+import "common/common.proto";
+
+service SiteService{
+    rpc Login(LoginReq) returns(LoginResp);                     // 登录
+    rpc Register(RegisterReq) returns(Empty);       // 注册
+    rpc ModifyProfile(ModifyProfileReq) returns(Empty); // 修改用户基本信息
+    rpc ModifyLoginPassword(ModifyLoginPasswordReq) returns(Empty);  // 修改用户登陆密码
+    rpc ModifyPaymentPassword(ModifyPaymentReq) returns(Empty); // 修改用户支付密码
+    rpc Logout(Empty) returns(Empty);     // 登出
+    rpc SendValidationCode(SendValidationReq) returns(Empty);  // 发送验证消息
+    rpc ForgetPassword(ForgetPasswordReq) returns(Empty);     // 忘记密码
+    rpc GlobalAreas(Empty) returns(GlobalAreaResp); // 获取国家相关信息
+    rpc GetProfile(ProfileReq) returns(ProfileResp); // 获取用户信息
+    rpc FindUserInfo(FindUserInfoReq) returns(FindUserInfoResp); // 查询用户信息(Rpc)
+    rpc FollowUser(FollowReq) returns(Empty); // 关注用户
+    rpc FollowUnlockUser(FollowReq) returns(Empty); // 取关用户
+    rpc FollowFans(FollowsReq) returns(FollowsResp); // 粉丝列表
+    rpc FollowFollowing(FollowsReq) returns(FollowsResp); // 关注列表
+    rpc FollowCount(FollowCountReq) returns(FollowCountResp); // 获取粉丝/关注数量
+    rpc FollowCheck(FollowReq) returns(FollowCheckResp); // 是否关注
+    rpc RedPoint(Empty) returns(RedPointResp); // 是否红点以及未读数
+    rpc ReadAll(Empty) returns(Empty); // 一键已读所有
+    rpc MsgList(MsgListReq) returns(MsgListResp); // 消息列表(平台消息、活动消息、交易消息)
+    rpc MarkRead(MarkReadReq) returns(Empty); // 标记单条交易消息已读
+    rpc SecurityAuthInfo(Empty) returns(SecurityAuthInfoResp); // 认证信息
+    rpc SecurityBinding(SecurityBindingReq) returns(Empty); // 绑定
+    rpc SiteConfigs(Empty) returns(SiteConfigsResp); // 系统配置
+    rpc SiteBanner(SiteBannerReq) returns(SiteBannerResp); // 站点轮播
+    rpc Rotating(RotatingReq) returns(RotatingResp); // 跑马灯
+    rpc StartupImage(Empty) returns(StartupImageResp); // 启动图
+    rpc ClearTransactionMsgReadAll(Empty) returns(Empty); // 清除交易已读消息
+    rpc MsgSummary(Empty) returns(MsgSummaryResp); // 消息汇总
+    rpc Stay(PageStayReq) returns(Empty); // 页面停留时长
+    rpc BannerClick(BannerClickReq) returns(Empty); // 页面点击
+}
+
+

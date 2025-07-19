@@ -1,0 +1,83 @@
+[success]
+other = "操作成功"
+[frequent_operation_failed]
+other = "操作频繁,请稍后重试"
+[query_failed]
+other = "查询失败,请稍后重试"
+[operation_failed]
+other = "操作失败,请稍后重试"
+[parameter_error]
+other = "参数错误"
+
+# 上传错误
+[upload_please_select_file]
+other = "请选择上传文件"
+[upload_failure]
+other = "上传失败"
+[upload_exceed_limit]
+other = "文件大小超出限制"
+[upload_type_limit]
+other = "文件类型错误"
+
+# 用户错误
+[user_invitation_not_exist]
+other = "邀请码不存在"
+[user_mobile_empty]
+other = "手机号输入不能为空"
+[user_mobile_error]
+other = "请输入正确的手机号"
+[user_email_empty]
+other = "邮件地址输入不能为空"
+[user_email_error]
+other = "请输入正确的邮件地址"
+[user_password_empty]
+other = "密码不能为空"
+[user_password_format]
+other = "密码为6位数字或字母或数字与字母组合"
+[user_password_error]
+other = "账号或密码错误，请重新输入"
+[user_disabled]
+other = "该账户已被禁用，请联系管理员"
+[user_exist]
+other = "账号已注册，请登录"
+[user_area_empty]
+other = "请选择国家地区"
+[user_band_mobile_exist]
+other = "手机号已绑定"
+[user_band_email_exist]
+other = "邮箱已绑定"
+[user_follow_exist]
+other = "已关注"
+[user_follow_not]
+other = "未关注"
+[user_band_mobile]
+other = "已绑定手机号"
+[user_band_email]
+other = "已绑定邮箱"
+
+# 验证码错误
+[captcha_empty]
+other = "验证码不能为空"
+[captcha_error]
+other = "验证码错误，请重新输入"
+[captcha_expired]
+other = "验证码过期，请重新获取"
+[captcha_limit]
+other = "频繁发送请稍后再试"
+
+# token错误
+[token_not_permissions]
+other = "您还未登录，请登录后重试"
+[token_match_fail]
+other = "用户令牌错误"
+[token_expired]
+other = "用户令牌已过期，请重新登录"
+[token_generate_failed]
+other = "用户令牌生成失败"
+[token_remote_login]
+other = "账号其他地方登陆"
+
+# 直播间错误
+[room_not_exist]
+other = "直播间不存在"
+

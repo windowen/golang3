@@ -1,0 +1,153 @@
+syntax = "proto3";
+package proto;
+option go_package = "serverApi/pkg/protobuf/live";
+
+import "live/room.proto";
+import "common/common.proto";
+
+message RoomIdReq{
+  int32 roomId = 1; // 平台直播间id
+}
+
+message chatCallBackReq {
+  string callId = 1; //消息内容
+  int64 timestamp = 2;
+  string chat_type = 3;
+  string group_id = 4;
+  string from = 5;
+  string to = 6;
+  string msg_id = 7;
+  payload payload = 8;
+  string securityVersion = 9;
+  string security = 10;
+}
+
+message payload {
+
+}
+
+message chatCallBackResp {
+  bool valid = 1;
+  string code = 2;
+  string payload = 3;
+}
+
+message CreateChatRoomReq {
+  int32 anchorId = 1;
+  string anchorName = 2;
+}
+
+message CreateChatRoomResp {
+  string chatRoomId = 1;
+}
+
+message CreateUserReq {
+  string username = 1;
+  string password = 2;
+}
+
+message CreateUserResp {
+  string uuid = 1;
+}
+
+message JoinRoomReq {
+  string chatRoomId = 1;
+}
+
+message JoinRoomResp {
+  string appId  = 1;
+  string appKey = 2;
+  string token =  3;
+  int32 userId =  4;
+}
+
+message SendGiftReq {
+  string chatRoomId = 1;
+  int32 gifId = 2;
+}
+
+message SendGiftResp {
+
+}
+
+message SendMessReq {
+  string chatRoomId = 1;
+  string content = 2;
+}
+
+message SendMessResp {
+
+}
+
+message ToggleLikeReq{
+  string chatRoomId = 1;
+}
+
+message ToggleLikeResp{
+  int32 userLiked = 1; //-1未点赞 1已点赞
+}
+
+message JoinLiveRoomReq {
+  int32 roomId = 1;
+  int32 category = 2;
+}
+
+message JoinLiveRoomResp {
+  string appId = 1;
+  string token = 2;
+}
+
+message LeaveRoomReq {
+  string chatRoomId = 1;
+  int32 userId = 2;
+}
+
+message LeaveRoomResp {
+
+}
+
+message FollowUserReq {
+  string chatRoomId = 1;
+  int32  userId = 2;
+  string userName = 3;
+}
+
+message FollowUserResp {
+
+}
+
+service LiveServer {
+  //im
+  rpc ChatCallBack(chatCallBackReq) returns (chatCallBackResp);
+  rpc CreateChatRooms(CreateChatRoomReq) returns (CreateChatRoomResp);
+  rpc CreateUser(CreateUserReq) returns (CreateUserResp);
+  //chatroom
+  rpc JoinRoom(JoinRoomReq) returns (JoinRoomResp); //进入房间
+  rpc SendGift(SendGiftReq) returns (SendGiftResp); //送礼物
+  rpc SendMess(SendMessReq) returns (SendMessResp); //发消息
+  rpc ToggleLike(ToggleLikeReq) returns (ToggleLikeResp);//点赞
+  rpc LeaveRoom(LeaveRoomReq) returns (LeaveRoomResp); //离开房间
+  rpc FollowUser(FollowUserReq) returns (FollowUserResp); //关注
+
+  // 主播
+  rpc FindLiveRoomInfo(Empty) returns (LiveRoomsDetailsResp); // 查询直播间信息
+  rpc RoomStartBroadcast(RoomStartBroadcastReq) returns (Empty); // 开播
+  rpc RoomListMute(RoomOpListReq) returns (RoomOpListResp); // 禁言
+  rpc RoomCreateMute(RoomOpCreateReq) returns (Empty);
+  rpc RoomCancelMute(RoomOpCancelReq) returns (Empty);
+  rpc RoomListKickOut(RoomOpListReq) returns (RoomOpListResp); // 踢出
+  rpc RoomCreateKickOut(RoomOpCreateReq) returns (Empty);
+  rpc RoomCancelKickOut(RoomOpCancelReq) returns (Empty);
+  rpc RoomListBlacklist(RoomOpListReq) returns (RoomOpListResp); // 黑名单
+  rpc RoomCreateBlacklist(RoomOpCreateReq) returns (Empty);
+  rpc RoomCancelBlacklist(RoomOpCancelReq) returns (Empty);
+  rpc RoomCloseBroadcast(Empty) returns (CloseBroadcastResp); // 下播
+  rpc GmCloseBroadcast(RoomIdReq) returns (Empty); // 后台下播
+
+  // 用户
+  rpc JoinLiveRoom(JoinLiveRoomReq) returns (JoinLiveRoomResp); // 加入直播间
+  rpc QuitLiveRoom(RoomIdReq) returns (Empty); // 退出直播间
+  rpc ListLiveRooms(ListLiveRoomsReq) returns (ListLiveRoomsResp); // 首页直播间
+  rpc SearchAnchor(SearchAnchorReq) returns (SearchAnchorResp); // 搜索主播
+  rpc LiveRoomsDetails(LiveRoomsDetailsReq) returns (LiveRoomsDetailsResp); // 直播间详情
+}

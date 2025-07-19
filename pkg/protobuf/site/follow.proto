@@ -1,0 +1,42 @@
+syntax = "proto3";
+package proto;
+option go_package = "serverApi/pkg/protobuf/site";
+
+// 关注/取消关注请求
+message FollowReq {
+    int32 followId = 1; // 被关注用户
+}
+
+// 粉丝/关注列表请求
+message FollowsReq {
+    int32 lastId = 1;
+    int32 pageSize = 2;
+}
+
+message FollowsResp {
+    repeated FollowsItem list = 1;
+}
+
+message FollowsItem {
+    int32 userId = 1;
+    string avatar = 2;
+    int32 sex = 3;
+    int32 levelId = 4;
+    string sign = 5;
+    string nickname = 6;
+}
+
+// 是否关注返回
+message FollowCheckResp {
+    int32  whether = 1; // 是否关注
+}
+
+// 获取粉丝/关注数量请求
+message FollowCountReq {
+    int32 userId = 1;
+}
+
+message FollowCountResp {
+    int32 followingCount = 1; // 关注数量
+    int32 fansCount = 2; // 粉丝数量
+}

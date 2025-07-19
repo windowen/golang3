@@ -1,0 +1,20 @@
+syntax = "proto3";
+package proto;
+option go_package = "serverApi/pkg/protobuf/site";
+
+
+message GlobalAreaResp{
+    repeated GlobalArea area = 1;
+    repeated GlobalLang lang = 2;
+
+    message GlobalArea{
+        string name = 1;         // 国家名称
+        string mobileCode = 2;   //手机代码
+        string countryCode = 3;  //国家码
+    }
+
+    message GlobalLang{
+        string languageCode = 1; // 语言代码
+        string languageName = 2; // 语言名称
+    }
+}

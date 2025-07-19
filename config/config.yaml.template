@@ -1,0 +1,39 @@
+
+mysql:
+  address: [ 127.0.0.1:3306 ]             # MYSQL_ADDRESS and MYSQL_PORT, MySQL server address and port
+  username: root                          # MYSQL_USERNAME, Username for MySQL
+  password: root                          # MYSQL_PASSWORD, Password for MySQL
+  database: serverApi                     # MYSQL_DATABASE, Database name
+  maxOpenConn: 1000                       # Max open connections
+  maxIdleConn: 100                        # Max idle connections
+  maxLifeTime: 60                         # Max lifetime of connections in seconds
+  logLevel: 4                             # Log level for MySQL
+  slowThreshold: 500                      # Slow query threshold in milliseconds
+
+# Redis configuration - used for caching and session management
+redis:
+  address: [ 127.0.0.1:6379 ] # REDIS_ADDRESS and REDIS_PORT, Redis server address and port
+  username: # REDIS_USERNAME, Username for Redis authentication
+  password: 123456 # REDIS_PASSWORD, Password for Redis
+
+
+app:
+  timezone: "Asia/Manila" # 时区 名称.
+
+grpc:
+  appid: "apofewjGA323FLP"
+  appSecret: "fdjaslkfjeWEGG@#@GFF&77"
+
+# Ports for RPC services
+rpcPort:
+  accountServerPort: 30200
+  gatewayPort: 10001
+
+rpcAddress:
+  accountAddress: 127.0.0.1
+
+debugModel:
+  debug: true
+
+sysLange:
+  lange: zh_cn

@@ -1,0 +1,36 @@
+syntax = "proto3";
+package proto;
+option go_package = "serverApi/pkg/protobuf/site";
+
+message SiteBannerReq {
+    int32 category = 1; // 类别(固定 1-热门 2-游戏 3-附近 4-推荐)
+}
+
+// 系统站点配置响应
+message SiteBannerResp {
+    repeated SiteBannerItem list = 1;
+    message SiteBannerItem {
+        string uri = 1; // 图片地址
+        int32 showType = 2; // 展示类型 1-纯展示 2-外链 3-直播间
+        string extInfo = 3; // 扩展信息 外链地址/直播间id
+    }
+}
+
+
+// 启动图响应
+message StartupImageResp{
+    string countryCode = 1; // 国家编码
+    string languageCode = 2; // 语言编码
+    string name = 3; // 启动图名称
+    string imageUrl = 4; // 启动图URL地址
+    string thumbnailUrl = 5; // 启动图缩略图地址
+}
+
+message PageStayReq {
+    string pageName = 1; // 页面名称
+    int32 stayTime = 2; // 停留时长 单位: 秒
+}
+
+message BannerClickReq {
+    int32 bannerType = 1; // banner类型 1:首页banner 2:推荐banner 3:热门banner
+}

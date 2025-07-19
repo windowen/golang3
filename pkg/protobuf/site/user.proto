@@ -1,0 +1,136 @@
+syntax = "proto3";
+package proto;
+option go_package = "serverApi/pkg/protobuf/site";
+
+// 登录请求
+message LoginReq {
+    int32 accountType = 1;  // 账号类型 1-手机 2-邮箱
+    int32 authType = 2;     // 登陆类型 1-短信 2-密码
+    string areaCode = 3;    // 国家代码
+    string mobile = 4;      // 手机号
+    string email = 5;       // 邮箱
+    string code = 6;        // 验证码
+    string password = 7;    // 密码
+}
+
+// 登录响应
+message LoginResp {
+    string token = 1;
+    string refreshToken = 2;
+}
+
+// 注册请求
+message RegisterReq {
+    int32 accountType = 1; // 账号类型 1-手机 2-邮箱
+    string areaCode = 2;    // 地区码
+    string mobile = 3;      // 手机号
+    string email = 4;       // 邮箱
+    string code = 5;        // 验证码
+    string password = 6;    // 密码
+    string inviteCode = 7;  // 邀请码
+}
+
+// 修改用户基本信息请求
+message UpdateProfileReq{
+    string avatar = 1;      // 用户头像
+    string nickname = 2;    // 用户昵称
+    string sign = 3;        // 签名
+}
+
+// 修改用户登陆密码请求
+message ModifyLoginPasswordReq{
+    string password = 1;  // 新密码
+    string code = 2;      // 验证码
+}
+
+// 修改用户支付密码请求
+message ModifyPaymentReq {
+    string password = 1;   // 新密码
+    string code = 2;       // 验证码
+}
+
+// 发送验证消息请求
+message SendValidationReq{
+    int32 accountType = 1;   // 账号类型 1-手机 2-邮箱
+    string mobile = 2;        // 手机号
+    string areaCode = 3;      // 地区码
+    string email = 4;         // 邮箱
+    string scene = 5;         // 消息场景 Login、Register、ForgetPassword
+}
+
+// 发送验证消息请求-登陆
+message SendValidationCertifiedReq{
+    int32 accountType = 1;   // 账号类型 1-手机 2-邮箱
+    string mobile = 2;        // 手机号
+    string areaCode = 3;      // 地区码
+    string email = 4;         // 邮箱
+    string scene = 5;         // 消息场景 ModifyLoginPassword、ModifyPaymentPassword
+}
+
+// 忘记密码请求
+message ForgetPasswordReq{
+    int32 accountType = 1;   // 账号类型 1-手机 2-邮箱
+    string areaCode = 2;
+    string mobile = 3;
+    string email = 4;
+    string password = 5;
+    string code = 6;
+}
+
+// 用户信息接口
+message ProfileReq {
+    int32 userId = 1;
+}
+
+// 用户信息响应
+message ProfileResp {
+    int32 userId = 1;
+    string countryCode = 2;
+    string  avatar = 3;
+    string  nickname = 4;
+    int32  sex = 5;             // 性别 1-男 2-女
+    string sign = 6;            // 签名
+    string birthday = 7;        // 生日
+    int32 feeling = 8;          // 感情
+    string country = 9;         // 国家
+    string area = 10;           // 国家
+    int32  category = 11;       // 类型 1-用户 2-主播 3-机器人
+    int32 status = 12;          // 账号状态 1-正常 2-禁用 3-删除
+    string chatUUID = 13;       // 聊天室uuid
+    int32 roomId = 14;          // 直播间id 如果是主播
+    int32 liveStatus = 15;      // 是否直播
+    int32 levelId = 16;         // 等级id
+    string inviteCode = 17;     // 邀请码
+    int32 profession = 18;      // 职业
+    int32 isFamilyMaster = 19;      // 是否家族长
+    int32 isFollow = 20;      // 是否关注
+}
+
+// 修改用户信息请求
+message ModifyProfileReq {
+    string  avatar = 1;
+    string  nickname = 2;
+    int32  sex = 3;         // 性别 1-男 2-女
+    string sign = 4;        // 签名
+    string birthday = 5;    // 生日
+    int32 feeling = 6;      // 感情
+    string country = 7;     // 国家
+    string area = 8;        // 国家
+    int32 profession = 9;   // 职业
+}
+
+// 查询用户信息请求
+message FindUserInfoReq {
+    int32 userId = 1;
+}
+
+// 查询用户信息响应
+message FindUserInfoResp {
+    int32 userId = 1;
+    string countryCode = 2;
+    string  avatar = 3;
+    string  nickname = 4;
+    int32  category = 5;       // 类型 1-用户 2-主播 3-机器人
+    int32 status = 6;          // 账号状态 1-正常 2-禁用 3-删除
+    string chatUUID = 7;       // 聊天室uuid
+}

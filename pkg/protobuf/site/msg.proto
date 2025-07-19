@@ -1,0 +1,93 @@
+syntax = "proto3";
+package proto;
+option go_package = "serverApi/pkg/protobuf/site";
+
+
+// 红点响应
+message RedPointResp {
+    // 是否显示红点true是
+    bool isShowRedPoint = 1;
+    // 未读消息条数
+    int32 unreadCount = 2;
+}
+
+// 消息列表请求
+message MsgListReq {
+    // 消息类型1-平台消息2-交易消息3-活动消息
+    int32 msgType = 1;
+    // 页码
+    int32 pageNumber = 2;
+    // 页大小
+    int32 pageSize = 3;
+}
+
+// 消息列表项
+message MsgListItem {
+    // Id
+    int32 id = 1;
+    // 内容
+    string content = 2;
+    // 创建时间
+    string createdAt = 3;
+    // 已读字段
+    int32 readStatus =4;
+}
+
+// 消息列表响应
+message MsgListResp {
+    // 总记录数
+    int32 totalRecord = 1;
+    // 总页数
+    int32 totalPage = 2;
+    // 页面大小
+    int32 pageSize = 3;
+    // 页码
+    int32 pageNum = 4;
+    // 平台消息列表项
+    repeated MsgListItem list = 5;
+}
+
+// 交易消息标记已读请求
+message MarkReadReq {
+    // 交易消息Id
+    repeated int32 ids = 1;
+}
+
+// 跑马灯请求
+message RotatingReq{
+    // 跑马灯请求类型1-热门2-场馆游戏3-充值提现
+    int32 rotatingType = 1;
+}
+
+// 跑马灯项
+message RotatingItem {
+    // Id
+    int32 id = 1;
+    // 名称
+    string name = 2;
+}
+
+// 跑马灯响应
+message RotatingResp {
+    repeated RotatingItem list = 1;
+}
+
+// 消息汇总响应
+message MsgSummaryResp {
+    // 平台消息时间
+    string platformCreatedAt = 1;
+    // 平台消息内容
+    string platformContent = 2;
+    // 交易消息时间
+    string transactionCreatedAt = 3;
+    // 交易消息内容
+    string transactionContent = 4;
+    // 交易消息未读数量
+    int32 transactionUnreadCount = 5;
+    // 平台消息时间
+    string activityCreatedAt = 6;
+    // 平台消息内容
+    string activityContent = 7;
+}
+
+

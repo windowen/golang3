@@ -1,0 +1,23 @@
+syntax = "proto3";
+package proto;
+option go_package = "activityApi/pkg/protobuf/agent";
+
+
+message AgentInfoReq {
+    uint32 platform = 1;
+    uint32 page = 2;
+    uint32 size = 3;
+}
+
+message agent {
+    int64 id = 1;
+}
+
+message AgentInfoResp {
+    repeated agent list = 1;
+    int64 total = 2;
+}
+
+service AgentServer {
+    rpc AgentInfo(AgentInfoReq) returns (AgentInfoResp);
+}
